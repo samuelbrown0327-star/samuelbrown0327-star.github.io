@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamPack Holidays</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b2a;
+  --gold: #c9933a;
+  --cream: #faf7f2;
+  --mid: #6b7280;
+  --accent: #1a4a7a;
+  --white: #ffffff;
+  --shadow: 0 8px 32px rgba(13,27,42,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  letter-spacing: 0.03em;
+}
+.logo span { color: var(--gold); }
+.lang-btns { display: flex; gap: 8px; }
+.lang-btns button {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: var(--white);
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  transition: 0.2s;
+}
+.lang-btns button:hover, .lang-btns button.active {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 60%, #2a6496 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 80px 20px 70px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('Montalcino_view.jpg') center/cover no-repeat;
+  opacity: 0.18;
+}
+.hero-content { position: relative; }
+.hero-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin: 0 auto 30px;
+  font-weight: 300;
+}
+.hero-badge {
+  display: inline-flex;
+  gap: 30px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 40px;
+  padding: 12px 30px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+}
+.hero-badge span { color: rgba(255,255,255,0.9); }
+.hero-badge strong { color: var(--gold); }
+
+/* ── SECTION TITLES ── */
+.section-header {
+  text-align: center;
+  padding: 60px 20px 10px;
+}
+.section-header .eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--navy);
+}
+.section-header p {
+  color: var(--mid);
+  margin-top: 10px;
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin-inline: auto;
+  font-weight: 300;
+}
+
+/* ── PACKAGES GRID ── */
+.packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 30px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(13,27,42,0.18);
+}
+.card-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .card-img-wrap img { transform: scale(1.07); }
+.card-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.card-body { padding: 18px 20px 20px; }
+.card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+.card-body .tagline {
+  color: var(--mid);
+  font-size: 0.88rem;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0ece6;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 1px; }
+.price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+.price small {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--mid);
+  font-weight: 400;
+}
+.card-includes {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pill {
+  background: #f0f4ff;
+  color: var(--accent);
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* ── DETAIL PANEL ── */
+.detail {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto 50px;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(13,27,42,0.15);
+}
+.detail-hero {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+.detail-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,27,42,0.7) 0%, transparent 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 28px 32px;
+}
+.detail-hero-overlay h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--white);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.detail-body { padding: 28px 32px; }
+.detail-body p.intro {
+  color: var(--mid);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+.detail-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.stat-box {
+  flex: 1;
+  min-width: 110px;
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.stat-box .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+}
+.stat-box .lbl {
+  font-size: 0.75rem;
+  color: var(--mid);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.itinerary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  color: var(--navy);
+}
+.day-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.day-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  background: var(--cream);
+  border-radius: 10px;
+}
+.day-num {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Playfair Display', serif;
+}
+.day-text strong { font-size: 0.9rem; display: block; }
+.day-text span { font-size: 0.83rem; color: var(--mid); font-weight: 300; }
+.detail-includes {
+  margin-top: 22px;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.detail-includes .inc-pill {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 400;
+}
+.close-btn {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 22px;
+  border: 1.5px solid var(--navy);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--navy);
+  transition: 0.2s;
+}
+.close-btn:hover { background: var(--navy); color: var(--white); }
+
+/* ── GALLERY STRIP ── */
+.gallery-strip {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.gallery-strip img {
+  height: 90px;
+  width: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.gallery-strip img:hover { transform: scale(1.04); }
+
+/* ── AI SECTION ── */
+.ai-section {
+  max-width: 720px;
+  margin: 20px auto 60px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 32px 36px;
+}
+.ai-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.ai-section .ai-sub {
+  color: var(--mid);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+.ai-input-row {
+  display: flex;
+  gap: 10px;
+}
+.ai-input-row input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid #e0dbd4;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem;
+  outline: none;
+  transition: border-color 0.2s;
+  background: var(--cream);
+  color: var(--navy);
+}
+.ai-input-row input:focus { border-color: var(--accent); background: var(--white); }
+.ai-input-row button {
+  padding: 12px 22px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.ai-input-row button:hover { background: var(--accent); }
+.ai-suggestions {
+  margin-top: 14px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.ai-suggestions button {
+  background: #f0f4ff;
+  color: var(--accent);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 13px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: 0.15s;
+}
+.ai-suggestions button:hover { background: var(--accent); color: var(--white); }
+.chat-history {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.chat-history:empty { display: none; }
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 92%;
+  animation: fadeUp 0.3s ease both;
+}
+.bubble-user {
+  background: var(--navy);
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.bubble-ai {
+  background: var(--cream);
+  color: var(--navy);
+  align-self: flex-start;
+  border-left: 3px solid var(--gold);
+  border-bottom-left-radius: 4px;
+}
+.bubble-ai.thinking {
+  color: var(--mid);
+  font-style: italic;
+}
+.bubble-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  opacity: 0.6;
+}
+
+/* ── WHY US ── */
+.why-section {
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 0 40px;
+}
+.why-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.why-card .icon { font-size: 2rem; margin-bottom: 10px; }
+.why-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 6px; }
+.why-card p { font-size: 0.83rem; color: var(--mid); line-height: 1.5; font-weight: 300; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  padding: 24px;
+  font-size: 0.83rem;
+}
+footer strong { color: var(--gold); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+.card { animation: fadeUp 0.5s ease both; }
+.card:nth-child(1){animation-delay:0.05s}
+.card:nth-child(2){animation-delay:0.12s}
+.card:nth-child(3){animation-delay:0.19s}
+.card:nth-child(4){animation-delay:0.26s}
+
+@media(max-width:600px){
+  header{padding:0 20px;}
+  .packages{padding:20px;}
+  .detail-body{padding:18px;}
+  .hero-badge{flex-direction:column;gap:8px;text-align:center;}
+  .ai-section{padding:24px 20px; margin:20px 16px 40px;}
+  .why-section{padding:0 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Dream<span>Pack</span> Holidays</div>
+  <div class="lang-btns">
+    <button onclick="setLang('en')" class="active" id="btn-en">EN</button>
+    <button onclick="setLang('it')" id="btn-it">IT</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="hero-eyebrow">Curated Italian Escapes</p>
+    <h1 id="hero-title">Discover Italy,<br>One Story at a Time</h1>
+    <p id="hero-sub">Handpicked 5-day packages blending culture, cuisine, and unforgettable landscapes — all-inclusive, zero hassle.</p>
+    <div class="hero-badge">
+      <span>🌿 <strong id="badge1">4 Destinations</strong></span>
+      <span>🏨 <strong id="badge2">All-Inclusive</strong></span>
+      <span>⭐ <strong id="badge3">Expert Guides</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="section-header">
+  <p class="eyebrow" id="eyebrow-pkg">Our Packages</p>
+  <h2 id="packagesTitle">Holiday Packages</h2>
+  <p id="packagesSubtitle">Click any destination to explore the full itinerary</p>
+</div>
+
+<div class="packages">
+
+  <div class="card" onclick="showDetail('montalcino')">
+    <div class="card-img-wrap">
+      <img src="Montalcino_view.jpg" alt="Montalcino" loading="lazy">
+      <span class="card-badge" data-key="badge-popular">Most Popular</span>
+    </div>
+    <div class="card-body">
+      <h3>Montalcino</h3>
+      <p class="tagline" data-key="tagline-montalcino">Wine & Tuscan countryside</p>
+      <div class="card-includes">
+        <span class="pill" data-key="pill-m-wine">🍷 Wine tasting</span>
+        <span class="pill" data-key="pill-m-cooking">🍝 Cooking class</span>
+        <span class="pill" data-key="pill-m-hotel">🏡 Boutique hotel</span>
+      </div>
+      <div class="card-meta">
+        <span class="stars">★★★★★</span>
+        <span class="price">€540 <small data-key="per-person">/person</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetail('rome')">
+    <div class="card-img-wrap">
+      <img src="roma.jpg" alt="Rome" loading="lazy">
+      <span class="card-badge" data-key="badge-value">Best Value</span>
+    </div>
+    <div class="card-body">
+      <h3>Rome</h3>
+      <p class="tagline" data-key="tagline-rome">History, culture & cuisine</p>
+      <div class="card-includes">
+        <span class="pill" data-key="pill-r-col">🏛️ Colosseum</span>
+        <span class="pill" data-key="pill-r-vat">🕌 Vatican</span>
+        <span class="pill" data-key="pill-r-night">🌃 Night tour</span>
+      </div>
+      <div class="card-meta">
+        <span class="stars">★★★★★</span>
+        <span class="price">€480 <small data-key="per-person">/person</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetail('venice')">
+    <div class="card-img-wrap">
+      <img src="venezia.jpg" alt="Venice" loading="lazy">
+      <span class="card-badge" data-key="badge-romantic">Most Romantic</span>
+    </div>
+    <div class="card-body">
+      <h3>Venice</h3>
+      <p class="tagline" data-key="tagline-venice">Canals, art & romance</p>
+      <div class="card-includes">
+        <span class="pill" data-key="pill-v-gon">🚣 Gondola</span>
+        <span class="pill" data-key="pill-v-hid">🎭 Hidden gems</span>
+        <span class="pill" data-key="pill-v-mur">🫙 Murano glass</span>
+      </div>
+      <div class="card-meta">
+        <span class="stars">★★★★★</span>
+        <span class="price">€650 <small data-key="per-person">/person</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetail('florence')">
+    <div class="card-img-wrap">
+      <img src="firenze.jpg" alt="Florence" loading="lazy">
+      <span class="card-badge" data-key="badge-art">Art Lovers</span>
+    </div>
+    <div class="card-body">
+      <h3>Florence</h3>
+      <p class="tagline" data-key="tagline-florence">Renaissance art & culture</p>
+      <div class="card-includes">
+        <span class="pill" data-key="pill-f-uff">🖼️ Uffizi Gallery</span>
+        <span class="pill" data-key="pill-f-wine">🍷 Wine tour</span>
+        <span class="pill" data-key="pill-f-art">🎨 Art workshop</span>
+      </div>
+      <div class="card-meta">
+        <span class="stars">★★★★☆</span>
+        <span class="price">€390 <small data-key="per-person">/person</small></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- DETAIL: MONTALCINO -->
+<div id="montalcino" class="detail">
+  <div class="detail-hero">
+    <img src="Montalcino_view.jpg" alt="Montalcino">
+    <div class="detail-hero-overlay"><h2 data-key="dtitle-montalcino">Montalcino — Wine & Soul of Tuscany</h2></div>
+  </div>
+  <div class="detail-body">
+    <p class="intro" data-key="intro-montalcino">Perched on a hilltop at 567 metres above sea level, Montalcino is one of Tuscany's crown jewels. Home to the world-renowned Brunello di Montalcino DOCG — often regarded as Italy's finest red wine — the town enchants visitors with its medieval fortress, panoramic vineyards, and the warmth of authentic rural life. Ideal for wine lovers, foodies, and anyone seeking a slower, richer pace of travel.</p>
+    <div class="detail-stats">
+      <div class="stat-box"><div class="val">5</div><div class="lbl" data-key="lbl-days">Days</div></div>
+      <div class="stat-box"><div class="val">€540</div><div class="lbl" data-key="lbl-perperson">Per person</div></div>
+      <div class="stat-box"><div class="val">4★</div><div class="lbl" data-key="lbl-hotel">Hotel</div></div>
+      <div class="stat-box"><div class="val">12</div><div class="lbl" data-key="lbl-maxgroup">Max group</div></div>
+    </div>
+    <div class="gallery-strip">
+      <img src="brunello.jpg" alt="Brunello wine">
+      <img src="fortezza.jpg" alt="Fortress" >
+      <img src="Montalcino_view.jpg" alt="View">
+    </div>
+    <p class="itinerary-title" data-key="itinerary-lbl">5-Day Itinerary</p>
+    <ul class="day-list">
+      <li><span class="day-num">1</span><div class="day-text"><strong data-key="d-m-1t">Arrival & Local Dinner</strong><span data-key="d-m-1d">Check in to your boutique hotel, stroll the medieval town, aperitivo at the fortress with panoramic views. Evening dinner at a traditional local restaurant.</span></div></li>
+      <li><span class="day-num">2</span><div class="day-text"><strong data-key="d-m-2t">Farm Visit: Salami & Cheese</strong><span data-key="d-m-2d">Morning visit to a local farm producing artisan salami and aged cheeses. Meet the producers, taste the products, and learn about traditional curing and aging methods.</span></div></li>
+      <li><span class="day-num">3</span><div class="day-text"><strong data-key="d-m-3t">Vineyard & Winemaking Experience</strong><span data-key="d-m-3d">Hands-on winemaking session at a family estate. Learn blending, oak aging, and take home your labelled bottle.</span></div></li>
+      <li><span class="day-num">4</span><div class="day-text"><strong data-key="d-m-4t">Cooking Class</strong><span data-key="d-m-4d">Full-morning cooking class with a local cook: Tuscan recipes, fresh pasta, and seasonal dishes prepared with ingredients from the surrounding countryside.</span></div></li>
+      <li><span class="day-num">5</span><div class="day-text"><strong data-key="d-m-5t">Perfume Creation & Cucina Povera Lunch</strong><span data-key="d-m-5d">Create your own personal fragrance at a local artisan perfume workshop. Farewell lunch celebrating the humble, flavourful tradition of Tuscan cucina povera.</span></div></li>
+    </ul>
+    <div class="detail-includes">
+      <span class="inc-pill" data-key="inc-m-1">✓ 4-star hotel (4 nights)</span>
+      <span class="inc-pill" data-key="inc-m-2">✓ Daily breakfast</span>
+      <span class="inc-pill" data-key="inc-m-3">✓ All tours & tastings</span>
+      <span class="inc-pill" data-key="inc-m-4">✓ Airport transfer</span>
+      <span class="inc-pill" data-key="inc-m-5">✓ Expert guide</span>
+    </div>
+    <button class="close-btn" onclick="closeDetail()" data-key="close-btn">← Back to packages</button>
+  </div>
+</div>
+
+<!-- DETAIL: ROME -->
+<div id="rome" class="detail">
+  <div class="detail-hero">
+    <img src="roma.jpg" alt="Rome">
+    <div class="detail-hero-overlay"><h2 data-key="dtitle-rome">Rome — The Eternal City</h2></div>
+  </div>
+  <div class="detail-body">
+    <p class="intro" data-key="intro-rome">Rome is a living museum. Few cities layer so many civilisations — ancient, Renaissance, Baroque — into a single, walkable metropolis. Over 2,000 years of history unfold around every corner: from the majestic Colosseum to the whispered prayers of the Vatican, from hidden neighbourhood trattorias to rooftop terraces with views that steal your breath. This is not a city you visit — it's one you feel.</p>
+    <div class="detail-stats">
+      <div class="stat-box"><div class="val">5</div><div class="lbl" data-key="lbl-days">Days</div></div>
+      <div class="stat-box"><div class="val">€480</div><div class="lbl" data-key="lbl-perperson">Per person</div></div>
+      <div class="stat-box"><div class="val">4★</div><div class="lbl" data-key="lbl-hotel">Hotel</div></div>
+      <div class="stat-box"><div class="val">15</div><div class="lbl" data-key="lbl-maxgroup">Max group</div></div>
+    </div>
+    <div class="gallery-strip">
+      <img src="trevi.jpg" alt="Trevi Fountain">
+      <img src="basilica.jpg" alt="Vatican">
+      <img src="pan.jpg" alt="Pantheon">
+    </div>
+    <p class="itinerary-title" data-key="itinerary-lbl">5-Day Itinerary</p>
+    <ul class="day-list">
+      <li><span class="day-num">1</span><div class="day-text"><strong data-key="d-r-1t">Ancient Rome</strong><span data-key="d-r-1d">Colosseum skip-the-line, Roman Forum & Palatine Hill. Evening at Campo de' Fiori market.</span></div></li>
+      <li><span class="day-num">2</span><div class="day-text"><strong data-key="d-r-2t">Vatican & Trastevere</strong><span data-key="d-r-2d">Private Vatican Museum tour, Sistine Chapel, St Peter's Basilica. Afternoon in charming Trastevere.</span></div></li>
+      <li><span class="day-num">3</span><div class="day-text"><strong data-key="d-r-3t">Food & Cooking Class</strong><span data-key="d-r-3d">Morning market tour at Campo de' Fiori, pasta and tiramisu cooking class, gelato trail.</span></div></li>
+      <li><span class="day-num">4</span><div class="day-text"><strong data-key="d-r-4t">Baroque Rome & Night Tour</strong><span data-key="d-r-4d">Trevi Fountain, Pantheon, Piazza Navona. Atmospheric night walking tour of illuminated monuments.</span></div></li>
+      <li><span class="day-num">5</span><div class="day-text"><strong data-key="d-r-5t">Neighbourhood & Wine Farewell</strong><span data-key="d-r-5d">Explore Pigneto or Ostiense district. Farewell wine tasting dinner with Roman sommelier.</span></div></li>
+    </ul>
+    <div class="detail-includes">
+      <span class="inc-pill" data-key="inc-r-1">✓ 4-star hotel (4 nights)</span>
+      <span class="inc-pill" data-key="inc-r-2">✓ Daily breakfast</span>
+      <span class="inc-pill" data-key="inc-r-3">✓ Skip-the-line tickets</span>
+      <span class="inc-pill" data-key="inc-r-4">✓ Cooking class</span>
+      <span class="inc-pill" data-key="inc-r-5">✓ Night tour</span>
+      <span class="inc-pill" data-key="inc-r-6">✓ Airport transfer</span>
+    </div>
+    <button class="close-btn" onclick="closeDetail()" data-key="close-btn">← Back to packages</button>
+  </div>
+</div>
+
+<!-- DETAIL: VENICE -->
+<div id="venice" class="detail">
+  <div class="detail-hero">
+    <img src="venezia.jpg" alt="Venice">
+    <div class="detail-hero-overlay"><h2 data-key="dtitle-venice">Venice — A City Like No Other</h2></div>
+  </div>
+  <div class="detail-body">
+    <p class="intro" data-key="intro-venice">Built on 118 small islands connected by 400 bridges, Venice defies every expectation of what a city can be. There are no cars — only gondolas, vaporetti, and the sound of your own footsteps echoing through narrow calli. Discover Renaissance palaces, Byzantine mosaics, and the world's finest glass-blowing tradition. Whether you're celebrating romance or feeding a lifelong curiosity, Venice rewards slow, attentive exploration.</p>
+    <div class="detail-stats">
+      <div class="stat-box"><div class="val">5</div><div class="lbl" data-key="lbl-days">Days</div></div>
+      <div class="stat-box"><div class="val">€650</div><div class="lbl" data-key="lbl-perperson">Per person</div></div>
+      <div class="stat-box"><div class="val">4★</div><div class="lbl" data-key="lbl-hotel">Hotel</div></div>
+      <div class="stat-box"><div class="val">10</div><div class="lbl" data-key="lbl-maxgroup">Max group</div></div>
+    </div>
+    <div class="gallery-strip">
+      <img src="gondola.jpg" alt="Gondola">
+      <img src="sanmarco.jpg" alt="San Marco" >
+      <img src="murano.jpg" alt="Murano" >
+    </div>
+    <p class="itinerary-title" data-key="itinerary-lbl">5-Day Itinerary</p>
+    <ul class="day-list">
+      <li><span class="day-num">1</span><div class="day-text"><strong data-key="d-v-1t">Arrival & Grand Canal</strong><span data-key="d-v-1d">Private water taxi from the station, welcome Spritz, sunset gondola ride along the Grand Canal.</span></div></li>
+      <li><span class="day-num">2</span><div class="day-text"><strong data-key="d-v-2t">Hidden Venice</strong><span data-key="d-v-2d">Off-the-beaten-path walking tour: Cannaregio ghetto, secret courtyards, local cicchetti bars. No crowds.</span></div></li>
+      <li><span class="day-num">3</span><div class="day-text"><strong data-key="d-v-3t">Murano Glass Workshop</strong><span data-key="d-v-3d">Ferry to Murano, private glass-blowing demonstration, create your own souvenir piece.</span></div></li>
+      <li><span class="day-num">4</span><div class="day-text"><strong data-key="d-v-4t">Islands of Burano & Torcello</strong><span data-key="d-v-4d">Burano's rainbow houses and lace-making tradition, Torcello's ancient Byzantine basilica, lagoon lunch.</span></div></li>
+      <li><span class="day-num">5</span><div class="day-text"><strong data-key="d-v-5t">Doge's Palace & Farewell Dinner</strong><span data-key="d-v-5d">Doge's Palace and Bridge of Sighs tour. Candlelit farewell dinner at a canalside osteria.</span></div></li>
+    </ul>
+    <div class="detail-includes">
+      <span class="inc-pill" data-key="inc-v-1">✓ 4-star hotel (4 nights)</span>
+      <span class="inc-pill" data-key="inc-v-2">✓ Daily breakfast</span>
+      <span class="inc-pill" data-key="inc-v-3">✓ Gondola ride</span>
+      <span class="inc-pill" data-key="inc-v-4">✓ Islands ferry</span>
+      <span class="inc-pill" data-key="inc-v-5">✓ Glass workshop</span>
+      <span class="inc-pill" data-key="inc-v-6">✓ Water taxi</span>
+    </div>
+    <button class="close-btn" onclick="closeDetail()" data-key="close-btn">← Back to packages</button>
+  </div>
+</div>
+
+<!-- DETAIL: FLORENCE -->
+<div id="florence" class="detail">
+  <div class="detail-hero">
+    <img src="firenze.jpg" alt="Florence">
+    <div class="detail-hero-overlay"><h2 data-key="dtitle-florence">Florence — Cradle of the Renaissance</h2></div>
+  </div>
+  <div class="detail-body">
+    <p class="intro" data-key="intro-florence">Florence is where the Renaissance was born and where it still breathes. In a single square mile you'll find more UNESCO-listed masterpieces than most entire countries: Botticelli's Venus, Michelangelo's David, Brunelleschi's impossibly daring dome. But Florence is also leather workshops, family-run wine bars, and the best bistecca in Italy. A city of extraordinary depth, endlessly rewarding for first-timers and repeat visitors alike.</p>
+    <div class="detail-stats">
+      <div class="stat-box"><div class="val">5</div><div class="lbl" data-key="lbl-days">Days</div></div>
+      <div class="stat-box"><div class="val">€390</div><div class="lbl" data-key="lbl-perperson">Per person</div></div>
+      <div class="stat-box"><div class="val">3★+</div><div class="lbl" data-key="lbl-hotel">Hotel</div></div>
+      <div class="stat-box"><div class="val">15</div><div class="lbl" data-key="lbl-maxgroup">Max group</div></div>
+    </div>
+    <div class="gallery-strip">
+      <img src="uffizi.jpg" alt="Art">
+      <img src="pontevecchio.jpg" alt="Ponte Vecchio">
+      <img src="firenze.jpg" alt="Duomo">
+    </div>
+    <p class="itinerary-title" data-key="itinerary-lbl">5-Day Itinerary</p>
+    <ul class="day-list">
+      <li><span class="day-num">1</span><div class="day-text"><strong data-key="d-f-1t">Uffizi Gallery & Duomo</strong><span data-key="d-f-1d">Skip-the-line Uffizi tour, Botticelli, Raphael. Climb Brunelleschi's dome for panoramic views.</span></div></li>
+      <li><span class="day-num">2</span><div class="day-text"><strong data-key="d-f-2t">Accademia & Walking Tour</strong><span data-key="d-f-2d">Michelangelo's David, Ponte Vecchio, Oltrarno district. Aperitivo at a rooftop bar overlooking the Arno.</span></div></li>
+      <li><span class="day-num">3</span><div class="day-text"><strong data-key="d-f-3t">Leather & Art Workshop</strong><span data-key="d-f-3d">Morning at the Santa Croce leather school. Afternoon watercolour or fresco workshop with a local artist.</span></div></li>
+      <li><span class="day-num">4</span><div class="day-text"><strong data-key="d-f-4t">Chianti Wine Tour</strong><span data-key="d-f-4d">Day trip to the Chianti Classico zone: two estate visits, olive oil tasting, lunch with valley views.</span></div></li>
+      <li><span class="day-num">5</span><div class="day-text"><strong data-key="d-f-5t">Mercato Centrale & Food Tasting</strong><span data-key="d-f-5d">Morning at Florence's historic food market, followed by street food tour and farewell dinner in San Niccolò.</span></div></li>
+    </ul>
+    <div class="detail-includes">
+      <span class="inc-pill" data-key="inc-f-1">✓ Hotel (4 nights)</span>
+      <span class="inc-pill" data-key="inc-f-2">✓ Daily breakfast</span>
+      <span class="inc-pill" data-key="inc-f-3">✓ Skip-the-line tickets</span>
+      <span class="inc-pill" data-key="inc-f-4">✓ Chianti day trip</span>
+      <span class="inc-pill" data-key="inc-f-5">✓ Art workshop</span>
+      <span class="inc-pill" data-key="inc-f-6">✓ Airport transfer</span>
+    </div>
+    <button class="close-btn" onclick="closeDetail()" data-key="close-btn">← Back to packages</button>
+  </div>
+</div>
+
+<!-- WHY DREAMPACK -->
+<div class="section-header" style="padding-top:20px;">
+  <p class="eyebrow" id="eyebrow-why">Why DreamPack</p>
+  <h2 id="whyTitle">Travel Done Differently</h2>
+</div>
+<div class="why-section">
+  <div class="why-card"><div class="icon">🧭</div><h4 id="why1h">Expert-Led</h4><p id="why1p">Every tour is led by passionate local experts — historians, sommeliers, artists — not generic guides.</p></div>
+  <div class="why-card"><div class="icon">🏨</div><h4 id="why2h">Curated Hotels</h4><p id="why2p">We only partner with characterful, independently-owned hotels. No chains, no cookie-cutter rooms.</p></div>
+  <div class="why-card"><div class="icon">🍽️</div><h4 id="why3h">Food-First</h4><p id="why3p">Every itinerary is built around authentic eating experiences — markets, classes, cellar doors, family tables.</p></div>
+  <div class="why-card"><div class="icon">👥</div><h4 id="why4h">Small Groups</h4><p id="why4p">Maximum 15 people per departure. More access, more flexibility, more genuine connection.</p></div>
+</div>
+
+<!-- AI SECTION -->
+<div class="ai-section">
+  <h2 id="helpTitle">🤖 AI Travel Assistant</h2>
+  <p class="ai-sub" id="helpSub">Ask anything — packages, travel tips, local culture, what to pack…</p>
+
+  <!-- Chat history -->
+  <div class="chat-history" id="chatHistory"></div>
+
+  <div class="ai-input-row">
+    <input type="text" id="question" placeholder="e.g. What should I pack for Venice in October?" onkeydown="if(event.key==='Enter')askAI()">
+    <button onclick="askAI()" id="askBtn">
+      <span id="askLabel">Ask</span>
+      <span id="askSpinner" style="display:none">⏳</span>
+    </button>
+  </div>
+  <div class="ai-suggestions" id="aiSuggestions">
+    <button onclick="askQuick('Which package is best for a romantic couple?')">💑 Most romantic?</button>
+    <button onclick="askQuick('What is the best season to visit Italy?')">🗓 Best season?</button>
+    <button onclick="askQuick('Is there anything suitable for families with children?')">👨‍👩‍👧 Family friendly?</button>
+    <button onclick="askQuick('What is the cheapest package available?')">💰 Cheapest option?</button>
+    <button onclick="askQuick('What food experiences are included in the packages?')">🍝 Food experiences?</button>
+    <button onclick="askQuick('What exactly is included in the price?')">📋 What\'s included?</button>
+    <button onclick="askQuick('Is it good for solo travellers?')">🧳 Solo travel?</button>
+    <button onclick="askQuick('Which destination is best for wine lovers?')">🍷 Best for wine?</button>
+    <button onclick="askQuick('What should I pack for a trip to Venice?')">🎒 What to pack?</button>
+    <button onclick="askQuick('How do I get from the airport to my hotel?')">🚌 Airport transfer?</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <strong>DreamPack Holidays</strong> — All rights reserved · hello@dreampack.it</p>
+</footer>
+
+<script>
+// ── SYSTEM PROMPT ──
+const SYSTEM_PROMPT = `You are Lucia, a friendly and knowledgeable AI travel assistant for DreamPack Holidays, a boutique Italian travel company. You help tourists and prospective customers with any question they have.
+
+You know everything about DreamPack's four packages:
+
+1. MONTALCINO – 5 days, €540/person. Tuscan wine country. Brunello di Montalcino DOCG wine tasting, vineyard visit, winemaking experience, Val d'Orcia day trip (Pienza, Bagno Vignoni), cooking class with a local nonna. 4-star boutique hotel. Max 12 people. Includes: hotel (4 nights), breakfast, all tours & tastings, airport transfer, expert guide.
+
+2. ROME – 5 days, €480/person. Colosseum (skip-the-line), Roman Forum, Vatican Museums & Sistine Chapel, cooking class (pasta & tiramisu), Trastevere, Baroque night tour, farewell wine dinner. 4-star hotel. Max 15 people. Includes: hotel, breakfast, skip-the-line tickets, cooking class, night tour, airport transfer.
+
+3. VENICE – 5 days, €650/person. Gondola ride, hidden Venice walking tour (Cannaregio, cicchetti bars), Murano glass workshop, Burano & Torcello island tour, Doge's Palace, canalside farewell dinner. 4-star boutique hotel. Max 10 people. Includes: hotel, breakfast, gondola, islands ferry, glass workshop, water taxi.
+
+4. FLORENCE – 5 days, €390/person. Uffizi Gallery (Botticelli, Raphael), Accademia (Michelangelo's David), Ponte Vecchio, leather workshop at Santa Croce, art workshop, Chianti wine day trip, Mercato Centrale food tour. 3-star+ hotel. Max 15 people. Includes: hotel, breakfast, skip-the-line tickets, Chianti day trip, art workshop, airport transfer.
+
+General policies: Flights NOT included. 10% loyalty discount for returning travellers. Group discounts for 8+ people. Children under 12: 20% off. No single supplement for solo travellers. Contact: hello@dreampack.it, +39 031 000 0000.
+
+You can also help tourists with general Italy travel questions: what to pack, currency (Euro), tipping customs, transport (trains, taxis), local etiquette, language tips, food culture, safety, best restaurants near each destination, weather by season, packing tips, visa info for EU/non-EU travellers, emergency numbers (112), etc.
+
+Always respond in the same language the user writes in (Italian or English). Be warm, concise, and helpful. Use a few relevant emojis to make your answer friendly. If you don't know something specific about DreamPack, say so honestly and suggest they contact the team directly.`;
+
+// ── CHAT STATE ──
+let chatMessages = []; // stores {role, content} for multi-turn
+
+// ── LANGUAGE DATA ──
+const T = {
+  en: {
+    'hero-eyebrow': 'Curated Italian Escapes',
+    'hero-title': 'Discover Italy,<br>One Story at a Time',
+    'hero-sub': 'Handpicked 5-day packages blending culture, cuisine, and unforgettable landscapes — all-inclusive, zero hassle.',
+    'badge1': '4 Destinations', 'badge2': 'All-Inclusive', 'badge3': 'Expert Guides',
+    'eyebrow-pkg': 'Our Packages',
+    'packagesTitle': 'Holiday Packages',
+    'packagesSubtitle': 'Click any destination to explore the full itinerary',
+    'eyebrow-why': 'Why DreamPack',
+    'whyTitle': 'Travel Done Differently',
+    'why1h':'Expert-Led','why1p':'Every tour is led by passionate local experts — historians, sommeliers, artists — not generic guides.',
+    'why2h':'Curated Hotels','why2p':'We only partner with characterful, independently-owned hotels. No chains, no cookie-cutter rooms.',
+    'why3h':'Food-First','why3p':'Every itinerary is built around authentic eating experiences — markets, classes, cellar doors, family tables.',
+    'why4h':'Small Groups','why4p':'Maximum 15 people per departure. More access, more flexibility, more genuine connection.',
+    'helpTitle': '🤖 AI Travel Assistant',
+    'helpSub': 'Ask anything about our destinations, packages or travel tips',
+    'askBtn': 'Ask',
+    'badge-popular': 'Most Popular', 'badge-value': 'Best Value', 'badge-romantic': 'Most Romantic', 'badge-art': 'Art Lovers',
+    'tagline-montalcino':'Wine & Tuscan countryside','tagline-rome':'History, culture & cuisine',
+    'tagline-venice':'Canals, art & romance','tagline-florence':'Renaissance art & culture',
+    'per-person': '/person'
+  },
+  it: {
+    'hero-eyebrow': 'Viaggi Italiani Selezionati',
+    'hero-title': 'Scopri l\'Italia,<br>Un\'Esperienza alla Volta',
+    'hero-sub': 'Pacchetti 5 giorni scelti con cura tra cultura, cucina e paesaggi indimenticabili — tutto incluso, senza pensieri.',
+    'badge1': '4 Destinazioni', 'badge2': 'All-Inclusive', 'badge3': 'Guide Esperte',
+    'eyebrow-pkg': 'I Nostri Pacchetti',
+    'packagesTitle': 'Pacchetti Vacanza',
+    'packagesSubtitle': 'Clicca su una destinazione per scoprire l\'itinerario completo',
+    'eyebrow-why': 'Perché DreamPack',
+    'whyTitle': 'Viaggiare in Modo Diverso',
+    'why1h':'Guide Locali','why1p':'Ogni tour è guidato da esperti locali appassionati — storici, sommelier, artisti — non guide generiche.',
+    'why2h':'Hotel Selezionati','why2p':'Collaboriamo solo con hotel di charme a gestione indipendente. Niente catene, niente camere standardizzate.',
+    'why3h':'Il Cibo Prima di Tutto','why3p':'Ogni itinerario è costruito attorno a esperienze culinarie autentiche — mercati, corsi, cantine, tavole di famiglia.',
+    'why4h':'Piccoli Gruppi','why4p':'Massimo 15 persone per partenza. Più accesso, più flessibilità, più connessione autentica.',
+    'helpTitle': '🤖 Assistente AI di Viaggio',
+    'helpSub': 'Chiedi tutto sulle nostre destinazioni, pacchetti e consigli di viaggio',
+    'askBtn': 'Chiedi',
+    'badge-popular': 'Più Popolare', 'badge-value': 'Miglior Rapporto', 'badge-romantic': 'Più Romantico', 'badge-art': 'Amanti dell\'Arte',
+    'tagline-montalcino':'Vino e campagna toscana','tagline-rome':'Storia, cultura e cucina',
+    'tagline-venice':'Canali, arte e romanticismo','tagline-florence':'Arte rinascimentale e cultura',
+    'per-person': '/persona',
+    // Card pills
+    'pill-m-wine':'🍷 Degustazione vini','pill-m-cooking':'🍝 Corso di cucina','pill-m-hotel':'🏡 Hotel boutique',
+    'pill-r-col':'🏛️ Colosseo','pill-r-vat':'🕌 Vaticano','pill-r-night':'🌃 Tour notturno',
+    'pill-v-gon':'🚣 Gondola','pill-v-hid':'🎭 Angoli nascosti','pill-v-mur':'🫙 Vetro di Murano',
+    'pill-f-uff':'🖼️ Galleria Uffizi','pill-f-wine':'🍷 Tour del vino','pill-f-art':'🎨 Laboratorio artistico',
+    // Shared detail labels
+    'lbl-days':'Giorni','lbl-perperson':'Per persona','lbl-hotel':'Hotel','lbl-maxgroup':'Gruppo max',
+    'itinerary-lbl':'Itinerario 5 giorni',
+    'close-btn':'← Torna ai pacchetti',
+    // Detail titles
+    'dtitle-montalcino':'Montalcino — Vino e anima della Toscana',
+    'dtitle-rome':'Roma — La Città Eterna',
+    'dtitle-venice':'Venezia — Una città unica al mondo',
+    'dtitle-florence':'Firenze — Culla del Rinascimento',
+    // Intros
+    'intro-montalcino':'Arroccata su una collina a 567 metri sul livello del mare, Montalcino è uno dei gioielli della Toscana. Patria del celebre Brunello di Montalcino DOCG — spesso considerato il miglior vino rosso d\'Italia — il borgo incanta con la sua fortezza medievale, i vigneti panoramici e la genuinità della vita rurale. Ideale per gli amanti del vino, della buona cucina e di un ritmo di viaggio lento e autentico.',
+    'intro-rome':'Roma è un museo a cielo aperto. Poche città stratificano tante civiltà — antica, rinascimentale, barocca — in un\'unica metropoli percorribile a piedi. Oltre 2.000 anni di storia si svelano ad ogni angolo: dal maestoso Colosseo alle preghiere sussurrate in Vaticano, dalle trattorie di quartiere nascosto ai terrazzi con viste mozzafiato. Roma non si visita — si sente.',
+    'intro-venice':'Costruita su 118 isolette collegate da 400 ponti, Venezia sfida ogni aspettativa di ciò che una città può essere. Non ci sono auto — solo gondole, vaporetti e il suono dei propri passi che risuona nelle calli strette. Palazzi rinascimentali, mosaici bizantini e la più raffinata tradizione della lavorazione del vetro al mondo. Venezia premia chi la esplora lentamente e con attenzione.',
+    'intro-florence':'Firenze è dove il Rinascimento è nato e dove respira ancora. In pochi chilometri quadrati si trovano più capolavori UNESCO che in interi Paesi: la Venere di Botticelli, il David di Michelangelo, la cupola impossibilmente audace del Brunelleschi. Ma Firenze è anche botteghe di pelletteria, enoteche di famiglia e la migliore bistecca d\'Italia. Una città di straordinaria profondità.',
+    // Montalcino days
+    'd-m-1t':'Arrivo e cena locale','d-m-1d':'Check-in nel boutique hotel, passeggiata nel centro medievale, aperitivo alla fortezza con vista panoramica. Cena serale in una trattoria locale tradizionale.',
+    'd-m-2t':'Fattoria: salame e formaggio','d-m-2d':'Visita mattutina a una fattoria locale produttrice di salumi artigianali e formaggi stagionati. Incontro con i produttori, degustazione e scoperta delle tecniche tradizionali di stagionatura.',
+    'd-m-3t':'Vigna e produzione del vino','d-m-3d':'Sessione pratica di vinificazione in una tenuta a conduzione familiare. Assemblaggio, affinamento in botte e bottiglia personalizzata da portare a casa.',
+    'd-m-4t':'Corso di cucina','d-m-4d':'Corso di cucina mattutino con una cuoca locale: ricette toscane, pasta fresca e piatti di stagione preparati con ingredienti del territorio circostante.',
+    'd-m-5t':'Creazione di un profumo e pranzo di cucina povera','d-m-5d':'Laboratorio artigianale per creare la propria fragranza personalizzata. Pranzo d\'addio dedicato alla ricca e umile tradizione della cucina povera toscana.',
+    // Rome days
+    'd-r-1t':'Roma Antica','d-r-1d':'Colosseo salta-fila, Foro Romano e Palatino. Serata al mercato di Campo de\' Fiori.',
+    'd-r-2t':'Vaticano e Trastevere','d-r-2d':'Tour privato dei Musei Vaticani, Cappella Sistina, Basilica di San Pietro. Pomeriggio nel caratteristico Trastevere.',
+    'd-r-3t':'Cibo e corso di cucina','d-r-3d':'Tour al mercato di Campo de\' Fiori, corso di pasta e tiramisù, percorso gelaterie.',
+    'd-r-4t':'Roma Barocca e tour notturno','d-r-4d':'Fontana di Trevi, Pantheon, Piazza Navona. Tour notturno tra i monumenti illuminati.',
+    'd-r-5t':'Quartieri e cena d\'addio','d-r-5d':'Esplora Pigneto o Ostiense. Cena di degustazione con sommelier romano.',
+    // Venice days
+    'd-v-1t':'Arrivo e Canal Grande','d-v-1d':'Taxi acqueo privato dalla stazione, Spritz di benvenuto, giro in gondola al tramonto lungo il Canal Grande.',
+    'd-v-2t':'Venezia nascosta','d-v-2d':'Tour a piedi fuori dai sentieri battuti: ghetto di Cannaregio, corti segrete, bacari locali. Senza folla.',
+    'd-v-3t':'Laboratorio del vetro a Murano','d-v-3d':'Traghetto per Murano, dimostrazione privata di soffiatura del vetro, crea il tuo souvenir personalizzato.',
+    'd-v-4t':'Isole di Burano e Torcello','d-v-4d':'Le case colorate di Burano e la tradizione del merletto, l\'antica basilica bizantina di Torcello, pranzo in laguna.',
+    'd-v-5t':'Palazzo Ducale e cena d\'addio','d-v-5d':'Tour del Palazzo Ducale e Ponte dei Sospiri. Cena romantica a lume di candela in una osteria sul canale.',
+    // Florence days
+    'd-f-1t':'Uffizi e Duomo','d-f-1d':'Tour salta-fila agli Uffizi, Botticelli, Raffaello. Salita alla cupola del Brunelleschi con vista panoramica.',
+    'd-f-2t':'Accademia e tour a piedi','d-f-2d':'Il David di Michelangelo, Ponte Vecchio, quartiere Oltrarno. Aperitivo in un rooftop bar sull\'Arno.',
+    'd-f-3t':'Pelletteria e laboratorio artistico','d-f-3d':'Mattina alla scuola di pelletteria di Santa Croce. Pomeriggio di laboratorio ad acquerello o affresco con un artista locale.',
+    'd-f-4t':'Tour del Chianti','d-f-4d':'Gita nella zona del Chianti Classico: due visite a tenute, degustazione di olio d\'oliva, pranzo con vista sulla vallata.',
+    'd-f-5t':'Mercato Centrale e degustazione','d-f-5d':'Mattina al mercato storico di Firenze, street food tour e cena d\'addio a San Niccolò.',
+    // Montalcino includes
+    'inc-m-1':'✓ Hotel 4 stelle (4 notti)','inc-m-2':'✓ Colazione inclusa','inc-m-3':'✓ Tutti i tour e degustazioni','inc-m-4':'✓ Transfer aeroportuale','inc-m-5':'✓ Guida esperta',
+    // Rome includes
+    'inc-r-1':'✓ Hotel 4 stelle (4 notti)','inc-r-2':'✓ Colazione inclusa','inc-r-3':'✓ Biglietti salta-fila','inc-r-4':'✓ Corso di cucina','inc-r-5':'✓ Tour notturno','inc-r-6':'✓ Transfer aeroportuale',
+    // Venice includes
+    'inc-v-1':'✓ Hotel 4 stelle (4 notti)','inc-v-2':'✓ Colazione inclusa','inc-v-3':'✓ Giro in gondola','inc-v-4':'✓ Traghetto per le isole','inc-v-5':'✓ Laboratorio del vetro','inc-v-6':'✓ Taxi acqueo',
+    // Florence includes
+    'inc-f-1':'✓ Hotel (4 notti)','inc-f-2':'✓ Colazione inclusa','inc-f-3':'✓ Biglietti salta-fila','inc-f-4':'✓ Gita nel Chianti','inc-f-5':'✓ Laboratorio artistico','inc-f-6':'✓ Transfer aeroportuale'
+  }
+};
+
+let lang = 'en';
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btns button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + l).classList.add('active');
+  const data = T[l];
+  for (const [k, v] of Object.entries(data)) {
+    const el = document.getElementById(k);
+    if (el) el.innerHTML = v;
+    document.querySelectorAll('[data-key="' + k + '"]').forEach(e => e.innerHTML = v);
+  }
+  // Translate input placeholder
+  const ph = { en: 'e.g. What should I pack for Venice in October?', it: 'es. Cosa mettere in valigia per Venezia in ottobre?' };
+  document.getElementById('question').placeholder = ph[l];
+}
+
+// ── DETAIL PANEL ──
+function showDetail(id) {
+  document.querySelectorAll('.detail').forEach(d => d.style.display = 'none');
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function closeDetail() {
+  document.querySelectorAll('.detail').forEach(d => d.style.display = 'none');
+  document.querySelector('.packages').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── AI ASSISTANT ──
+// ── AI CHAT ──
+async function askAI() {
+  const input = document.getElementById('question');
+  const q = input.value.trim();
+  if (!q) return;
+
+  input.value = '';
+  addBubble('user', q);
+  chatMessages.push({ role: 'user', content: q });
+
+  // Show thinking
+  const thinkId = 'think-' + Date.now();
+  addBubble('ai', '✍️ Lucia is typing…', thinkId, true);
+
+  // Disable button
+  document.getElementById('askLabel').style.display = 'none';
+  document.getElementById('askSpinner').style.display = 'inline';
+  document.getElementById('askBtn').disabled = true;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: chatMessages
+      })
+    });
+
+    const data = await response.json();
+    const reply = data.content?.find(b => b.type === 'text')?.text || "I'm sorry, I couldn't get a response. Please try again.";
+
+    // Remove thinking bubble
+    document.getElementById(thinkId)?.remove();
+
+    chatMessages.push({ role: 'assistant', content: reply });
+    addBubble('ai', reply);
+
+  } catch (err) {
+    document.getElementById(thinkId)?.remove();
+    addBubble('ai', '⚠️ Connection error. Please check your internet and try again.');
+  }
+
+  // Re-enable
+  document.getElementById('askLabel').style.display = 'inline';
+  document.getElementById('askSpinner').style.display = 'none';
+  document.getElementById('askBtn').disabled = false;
+}
+
+function addBubble(role, text, id, isThinking) {
+  const history = document.getElementById('chatHistory');
+  const wrap = document.createElement('div');
+  if (id) wrap.id = id;
+
+  const label = document.createElement('div');
+  label.className = 'bubble-label';
+  label.textContent = role === 'user' ? '🧑 You' : '🤖 Lucia';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + (role === 'user' ? 'bubble-user' : 'bubble-ai') + (isThinking ? ' thinking' : '');
+  bubble.textContent = text;
+
+  wrap.style.display = 'flex';
+  wrap.style.flexDirection = 'column';
+  wrap.style.alignItems = role === 'user' ? 'flex-end' : 'flex-start';
+  wrap.appendChild(label);
+  wrap.appendChild(bubble);
+  history.appendChild(wrap);
+  history.scrollTop = history.scrollHeight;
+}
+
+function askQuick(q) {
+  document.getElementById('question').value = q;
+  askAI();
+}
+</script>
+</body>
+</html>
