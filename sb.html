@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamPack Holidays</title>
+<style>
+body {font-family: Arial; margin:0; background:#f0f4ff;}
+header {background:#0a6cff; color:white; text-align:center; padding:20px;}
+nav button {margin:5px; padding:10px; border:none; border-radius:5px; cursor:pointer;}
+section {padding:30px;}
+.packages {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
+.card {background:white; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; width:260px; cursor:pointer; border-radius:12px; transition:0.3s;}
+.card:hover {transform:scale(1.08);}
+.card img {width:100%; border-radius:10px;}
+.price {color:#0a6cff; font-weight:bold;}
+.detail {display:none; background:white; margin:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.detail img {width:100%; border-radius:12px 12px 0 0;}
+footer {background:#222; color:white; text-align:center; padding:15px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1 id="title">DreamPack Holidays</h1>
+<nav>
+<button onclick="setLang('en')">EN</button>
+<button onclick="setLang('it')">IT</button>
+</nav>
+</header>
+
+<section>
+<h2 id="packagesTitle">Holiday Packages</h2>
+<div class="packages">
+
+<div class="card" onclick="showDetail('montalcino')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Montalcino_view.jpg">
+<h3>Montalcino</h3>
+<p>Wine & countryside experience</p>
+<p class="price">€540</p>
+</div>
+
+<div class="card" onclick="showDetail('rome')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Colosseum_in_Rome%2C_Italy.jpg">
+<h3>Rome</h3>
+<p>History and culture</p>
+<p class="price">€480</p>
+</div>
+
+<div class="card" onclick="showDetail('venice')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Venice_Canal.jpg">
+<h3>Venice</h3>
+<p>Romantic canals</p>
+<p class="price">€650</p>
+</div>
+
+<div class="card" onclick="showDetail('florence')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Florence_skyline.jpg">
+<h3>Florence</h3>
+<p>Art and Renaissance</p>
+<p class="price">€390</p>
+</div>
+
+</div>
+</section>
+
+<!-- DETAILS -->
+<section id="montalcino" class="detail">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Montalcino_view.jpg">
+<div style="padding:20px;">
+<h2>Montalcino - 5 Day Wine Experience</h2>
+<p>Montalcino is a charming Tuscan town famous for Brunello wine, rolling hills and authentic Italian lifestyle.</p>
+<ul>
+<li>Day 1: Explore village & local food tasting</li>
+<li>Day 2: Brunello wine tasting tour</li>
+<li>Day 3: Vineyard visit & wine making experience</li>
+<li>Day 4: Tuscany countryside excursion</li>
+<li>Day 5: Cooking class with locals</li>
+</ul>
+</div>
+</section>
+
+<section id="rome" class="detail">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Colosseum_in_Rome%2C_Italy.jpg">
+<div style="padding:20px;">
+<h2>Rome - 5 Day Experience</h2>
+<p>Rome offers history, culture and incredible cuisine.</p>
+<ul>
+<li>Day 1: Colosseum visit</li>
+<li>Day 2: Vatican tour</li>
+<li>Day 3: Food & cooking class</li>
+<li>Day 4: Night tour</li>
+<li>Day 5: Wine tasting</li>
+</ul>
+</div>
+</section>
+
+<section id="venice" class="detail">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Venice_Canal.jpg">
+<div style="padding:20px;">
+<h2>Venice - 5 Day Escape</h2>
+<p>Venice is unique for canals, art and romance.</p>
+<ul>
+<li>Day 1: Gondola ride</li>
+<li>Day 2: Hidden Venice</li>
+<li>Day 3: Glass workshop</li>
+<li>Day 4: Islands tour</li>
+<li>Day 5: Dinner experience</li>
+</ul>
+</div>
+</section>
+
+<section id="florence" class="detail">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Florence_skyline.jpg">
+<div style="padding:20px;">
+<h2>Florence - 5 Day Art Journey</h2>
+<p>Florence is the center of Renaissance art and culture.</p>
+<ul>
+<li>Day 1: Uffizi Gallery</li>
+<li>Day 2: Walking tour</li>
+<li>Day 3: Art workshop</li>
+<li>Day 4: Wine tour</li>
+<li>Day 5: Food tasting</li>
+</ul>
+</div>
+</section>
+
+<!-- AI -->
+<section>
+<h2 id="helpTitle">Help & AI Assistant</h2>
+<input type="text" id="question" placeholder="Ask about food, weather...">
+<button onclick="askAI()">Ask</button>
+<p id="answer"></p>
+</section>
+
+<footer>
+<p>© 2026 DreamPack</p>
+</footer>
+
+<script>
+function showDetail(id){
+document.querySelectorAll('.detail').forEach(d=>d.style.display='none');
+document.getElementById(id).style.display='block';
+}
+
+function askAI(){
+let q=document.getElementById('question').value.toLowerCase();
+let a="I don't understand";
+if(q.includes('food')) a="All destinations offer local food and wine experiences.";
+if(q.includes('weather')) a="Best seasons are spring and autumn.";
+if(q.includes('montalcino')) a="Montalcino is famous for wine and Tuscany landscapes.";
+if(q.includes('rome')) a="Rome offers history and food.";
+if(q.includes('venice')) a="Venice offers canals and romance.";
+if(q.includes('florence')) a="Florence offers art and culture.";
+document.getElementById('answer').innerText=a;
+}
+
+const t={en:{title:"DreamPack Holidays",packagesTitle:"Holiday Packages",helpTitle:"Help & AI Assistant"},it:{title:"DreamPack Vacanze",packagesTitle:"Pacchetti Vacanza",helpTitle:"Aiuto e Assistente AI"}};
+function setLang(l){for(let k in t[l]){let el=document.getElementById(k);if(el) el.innerText=t[l][k];}}
+</script>
+
+</body>
+</html>
